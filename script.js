@@ -51,42 +51,73 @@ document.querySelector('#objet').appendChild(displayNameObject[indiceAleatoire])
 
 // programme guess price : 
 
+// fonction perdu 
+// function perdu (score){
+//     if (score === 0) {
+//         jeu = false;
+//         message.innerHTML = " 😫 Vous avez perdu ! "
+//         document.querySelector('body').style.backgroundColor = 'red'
+//         bouton.classList.add('hidden')
+
+//     }
+// }
+
 
 
 // creation des variables nbAleatoire et nbTentative
-
-let nbAleatoire = Math.trunc(Math.random() * 10) + 1
-let score = 10;
-
 let bouton = document.querySelector("#bouton")
 let message = document.querySelector('#message')
+let afficheScore = document.querySelector('#nbre-tentative')
+let jeu = true;
+
+let nbAleatoire = Math.trunc(Math.random() * 10) + 1
+ score = 10;
+
+
+
 
 
 bouton.addEventListener('click', function () {
-    let prixPropose = Number(document.querySelector('#prix-propose').value);
-    nbAleatoire;
+    if (jeu) {
+        let prixPropose = Number(document.querySelector('#prix-propose').value);
+        nbAleatoire;
 
-    if (!prixPropose) {
-        
-        message.innerHTML = "Ce n'est PAS un NOMBRE 🛑"
+        if (prixPropose === 0) {
 
-    } else if (prixPropose === 0) {
-        
-        message.innerHTML = "l'article n'est pas gratuit 🤣"
+            message.innerHTML = "l'article n'est pas gratuit 🤣"
+            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+           
 
-    } else if (prixPropose === nbAleatoire) {
+        } else if (prixPropose === nbAleatoire) {
+
+            message.innerHTML = "Le prix est correct félicitation ! "
+       
+            document.querySelector('body').style.backgroundColor = '#60b347'
+
+        } else if (prixPropose > nbAleatoire) {
+
+            message.innerHTML = "Le prix est trop HAUT 📈"
+            score--;
+            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+            // perdu(score)
+
+        } else {
+            score--;
+            message.innerHTML = "Le prix est trop BAS 📉"
+            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+            // perdu(score)
+        }
+
+    }
 
 
-        message.innerHTML = "Le prix est correct félicitation ! "
-        document.querySelector('body').style.backgroundColor = '#60b347'
 
-    } else if (prixPropose > nbAleatoire) {
+    if (score === 0) {
 
-        score--;
-        message.innerHTML = "Le prix est trop HAUT 📈"
-    } else {
-        score--;
-        message.innerHTML = "Le prix est trop BAS 📉"
+        jeu = true;
+        message.innerHTML = " 😫 Vous avez perdu ! "
+        document.querySelector('body').style.backgroundColor = '#8a0c0c'
+        bouton.style.display = 'none'
     }
 
 })
