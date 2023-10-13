@@ -8,29 +8,36 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style.css">
+    <!-- <audio src="juste_prix.mp3" id="audio1"></audio> -->
     <title>Le juste Prix</title>
 </head>
 
 <body>
     <div class="container ">
-        <div class = "text-center mb-4 mt-3">Le juste prix</div>
+        <audio src="juste_prix.mp3" id="audio1"></audio>
+        <audio src="ding.mp3" id="audio2"></audio>
+        <audio src="buzzer.mp3" id="audio3"></audio>
+        <div class = "text-center mb-4 mt-3 display-3" id="font">Le juste prix</div>
         <div class="row">
-            <div class="col-ms-6 mx-auto mt-5 text-center">
-                <div class="mb-6"></div>
-                <div id="objet"></div>
+            <div class="col-ms-6 col-3 mx-auto mt-5 text-center">
+                <div class="mb-6">
+                <div id="objet"class ="mx-auto border p-3 bg-light shadow p-3 mb-5 bg-body-tertiary" ></div>
+            </div>
                 <br>
             </div>
             <div class="mb-6">
                 <label for="prix-propose" class="form-label">Proposez un prix entre 1 & 100 euros : </label>
-                <input type="number" class="form-control" id="prix-propose" aria-describedby="prix-propose">
-                <div class="form-text">Trouvez le juste prix et tentez de gagnez cet objet ! </div>
-                <div id="nbre-tentative" class="form-text col-sm-3 mx-auto mt-5 text-center"></div>
+                <input type="number" class="form-control shadow p-3 mb-5 bg-body-tertiary rounded" id="prix-propose" aria-describedby="prix-propose">
+                <div class="form-text col-ms-6 mx-auto mt-5 text-center ">Trouvez le juste prix et tentez de gagnez cet objet ! </div>
+                <div id="nbre-tentative" class="form-text col-ms-6 mx-auto mt-2 text-center"></div>
             </div>
+            <div class="col-sm-3 mx-auto mt-2 text-center " id="message" ></div>
             <button type="submit" id="bouton" class="btn btn-primary mt-5">Proposer</button>
+            
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3 mx-auto mt-5 text-center " id="message" >
+        
             <div ></div>
         </div>
     </div>

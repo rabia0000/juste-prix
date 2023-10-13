@@ -14,11 +14,11 @@ imgGrill.style = "width: 250px"
 
 const imgGuitare = document.createElement("img");
 imgGuitare.src = "guitare.png"
-imgGuitare.style = "width: 250px"
+imgGuitare.style = "width: 300px "
 
 const imgSac = document.createElement("img");
 imgSac.src = "sac-a-main.png"
-imgSac.style = "width: 250px"
+imgSac.style = "width: 200px"
 
 const objetImage = [imgChaise, imgCostume, imgGrill, imgGuitare, imgSac]
 
@@ -68,24 +68,25 @@ document.querySelector('#objet').appendChild(displayNameObject[indiceAleatoire])
 let bouton = document.querySelector("#bouton")
 let message = document.querySelector('#message')
 let afficheScore = document.querySelector('#nbre-tentative')
+audioGenerique = document.querySelector('#audio1')
+audioDing = document.querySelector('#audio1')
+audioBuzz = document.querySelector('#audio3')
+
 let jeu = true;
-
-let nbAleatoire = Math.trunc(Math.random() * 10) + 1
- score = 10;
-
-
-
+let nbAleatoire = Math.trunc(Math.random()*10) +1
+score = 10;
 
 
 bouton.addEventListener('click', function () {
     if (jeu) {
         let prixPropose = Number(document.querySelector('#prix-propose').value);
         nbAleatoire;
-
+        console.log(nbAleatoire)
+        afficheScore.innerHTML = `Vous avez ${score} tentatives`
         if (prixPropose === 0) {
 
             message.innerHTML = "l'article n'est pas gratuit 🤣"
-            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+            afficheScore.innerHTML = `Il vous reste ${score} tentatives`
            
 
         } else if (prixPropose === nbAleatoire) {
@@ -93,18 +94,22 @@ bouton.addEventListener('click', function () {
             message.innerHTML = "Le prix est correct félicitation ! "
        
             document.querySelector('body').style.backgroundColor = '#60b347'
+            audioGenerique.play();
 
-        } else if (prixPropose > nbAleatoire) {
+        } else if (prixPropose < nbAleatoire) {
 
-            message.innerHTML = "Le prix est trop HAUT 📈"
+            message.innerHTML = "C'est plus ! 📈"
             score--;
-            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+            afficheScore.innerHTML = `Il vous reste ${score} tentatives`
+            audioBuzz.play()
             // perdu(score)
 
-        } else {
+        } else  if (prixPropose > nbAleatoire){
+           
+            message.innerHTML = "C'est moins !  📉"
             score--;
-            message.innerHTML = "Le prix est trop BAS 📉"
-            afficheScore.innerHTML = `ìl vous reste ${score} tentatives`
+            afficheScore.innerHTML = `Il vous reste ${score} tentatives`
+            audioBuzz.play()
             // perdu(score)
         }
 
