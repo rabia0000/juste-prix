@@ -73,7 +73,7 @@ audioDing = document.querySelector('#audio1')
 audioBuzz = document.querySelector('#audio3')
 
 let jeu = true;
-let nbAleatoire = Math.trunc(Math.random()*10) +1
+let nbAleatoire = Math.trunc(Math.random()*100) +1
 score = 10;
 
 
