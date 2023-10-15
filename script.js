@@ -74,7 +74,7 @@ audioDing = document.querySelector('#audio1')
 audioBuzz = document.querySelector('#audio3')
 
     let jeu = true;
-    let nbAleatoire = Math.trunc(Math.random()*10) +1
+    let nbAleatoire = Math.trunc(Math.random()*100) +1
     score = 10;
 
 
@@ -83,7 +83,6 @@ bouton.addEventListener('click', function () {
     if (jeu) {
         let prixPropose = Number(document.querySelector('#prix-propose').value);
         nbAleatoire;
-        console.log(nbAleatoire)
         afficheScore.innerHTML = `Vous avez ${score} tentatives`
 
         if (prixPropose === 0) {
@@ -96,19 +95,19 @@ bouton.addEventListener('click', function () {
             jeu = false
             bouton.style.display = 'none'
             message.innerHTML = "Le prix est correct félicitation !"
-            // let button = document.createElement('button')
+           
            
        
             document.querySelector('body').style.backgroundColor = '#60CC82'
             audioGenerique.play();
 
-        } else if (prixPropose < nbAleatoire) {
+        }  else if (prixPropose < nbAleatoire) {
 
-            message.innerHTML = "C'est plus ! 📈"
-            score--;
-            afficheScore.innerHTML = `Il vous reste ${score} tentatives`
-            audioBuzz.play()
-            // perdu(score)
+                message.innerHTML = "C'est plus ! 📈"
+                score--;
+                afficheScore.innerHTML = `Il vous reste ${score} tentatives`
+                audioBuzz.play()
+      
 
         } else  if (prixPropose > nbAleatoire){
            
@@ -116,7 +115,7 @@ bouton.addEventListener('click', function () {
             score--;
             afficheScore.innerHTML = `Il vous reste ${score} tentatives`
             audioBuzz.play()
-            // perdu(score)
+            
         }
 
     }
