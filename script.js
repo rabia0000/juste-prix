@@ -1,23 +1,24 @@
 // creation des balises images et du tableau des images
 
+
 const imgChaise = document.createElement('img');
-imgChaise.src = "chaise.png"
+imgChaise.src = "assets/img/chaise.png"
 imgChaise.style = 'width: 250px';
 
 const imgCostume = document.createElement("img");
-imgCostume.src = "costume-haloween.png"
+imgCostume.src = "assets/img/costume-haloween.png"
 imgCostume.style = 'width: 250px';
 
 const imgGrill = document.createElement("img");
-imgGrill.src = "grill.png";
+imgGrill.src = "assets/img/grill.png";
 imgGrill.style = "width: 250px"
 
 const imgGuitare = document.createElement("img");
-imgGuitare.src = "guitare.png"
+imgGuitare.src = "assets/img/guitare.png"
 imgGuitare.style = "width: 300px "
 
 const imgSac = document.createElement("img");
-imgSac.src = "sac-a-main.png"
+imgSac.src = "assets/img/sac-a-main.png"
 imgSac.style = "width: 200px"
 
 const objetImage = [imgChaise, imgCostume, imgGrill, imgGuitare, imgSac]
@@ -46,7 +47,7 @@ const displayNameObject = [nameChaise, nameCostume, nameGrill, nameGuitare, name
 
 let indiceAleatoire = Math.floor(Math.random() * objetImage.length)
 document.querySelector('#objet').appendChild(objetImage[indiceAleatoire])
-document.querySelector('#objet').appendChild(displayNameObject[indiceAleatoire])
+document.querySelector('#description').appendChild(displayNameObject[indiceAleatoire])
 
 
 // programme guess price : 
@@ -72,9 +73,10 @@ audioGenerique = document.querySelector('#audio1')
 audioDing = document.querySelector('#audio1')
 audioBuzz = document.querySelector('#audio3')
 
-let jeu = true;
-let nbAleatoire = Math.trunc(Math.random()*100) +1
-score = 10;
+    let jeu = true;
+    let nbAleatoire = Math.trunc(Math.random()*10) +1
+    score = 10;
+
 
 
 bouton.addEventListener('click', function () {
@@ -83,6 +85,7 @@ bouton.addEventListener('click', function () {
         nbAleatoire;
         console.log(nbAleatoire)
         afficheScore.innerHTML = `Vous avez ${score} tentatives`
+
         if (prixPropose === 0) {
 
             message.innerHTML = "l'article n'est pas gratuit 🤣"
@@ -90,10 +93,13 @@ bouton.addEventListener('click', function () {
            
 
         } else if (prixPropose === nbAleatoire) {
-
-            message.innerHTML = "Le prix est correct félicitation ! "
+            jeu = false
+            bouton.style.display = 'none'
+            message.innerHTML = "Le prix est correct félicitation !"
+            // let button = document.createElement('button')
+           
        
-            document.querySelector('body').style.backgroundColor = '#60b347'
+            document.querySelector('body').style.backgroundColor = '#60CC82'
             audioGenerique.play();
 
         } else if (prixPropose < nbAleatoire) {
@@ -119,10 +125,11 @@ bouton.addEventListener('click', function () {
 
     if (score === 0) {
 
-        jeu = true;
+        jeu = false;
         message.innerHTML = " 😫 Vous avez perdu ! "
         document.querySelector('body').style.backgroundColor = '#8a0c0c'
         bouton.style.display = 'none'
+        audio2.play()
     }
 
 })
@@ -132,6 +139,28 @@ bouton.addEventListener('click', function () {
 
 
 
+// bouton reset 
 
+let boutonRejouer = document.querySelector('#reset')
 
+let body = document.querySelector('body')
+boutonRejouer.addEventListener('click', function(){
+     initialisation()
+})
 
+// fonctions
+
+function initialisation(){
+
+    jeu = true;
+    console.log(jeu)
+    nbAleatoire = Math.trunc(Math.random()*10) +1
+    console.log(nbAleatoire)
+    score = 10;
+    body.style.backgroundColor = '#A5A6B6' ;
+    message.innerHTML=""
+    audioGenerique.pause();
+    afficheScore.innerHTML = `Vous avez ${score} tentatives`
+    bouton.style.display = 'block'
+
+ }
